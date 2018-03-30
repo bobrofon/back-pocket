@@ -5,7 +5,8 @@ go:
   - tip
 
 before_install:
-  - go get -t -v ./...
+  - curl https://glide.sh/get | sh
+  - glide install
 
 script:
   - ./scripts/test.sh
