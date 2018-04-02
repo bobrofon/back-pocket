@@ -14,6 +14,6 @@ func NewBackPocketConf(rawUrl string) (*BackPocketConf, error) {
 	if httpProxy, err := url.Parse(rawUrl); err != nil {
 		return nil, errors.Wrap(err, "invalid proxy url")
 	} else {
-		return &BackPocketConf{HttpProxy:httpProxy}, nil
+		return &BackPocketConf{HttpProxy: httpProxy}, nil
 	}
 }
