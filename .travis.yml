@@ -9,7 +9,11 @@ before_install:
   - glide install
 
 script:
-  - ./scripts/test.sh
+  - mkdir -p build
+  - cd build
+  - cmake ..
+  - make test
+  - make
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
