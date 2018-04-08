@@ -2,3 +2,5 @@ package: github.com/bobrofon/back-pocket
 import:
 - package: github.com/pkg/errors
   version: ^0.8.0
+- package: github.com/spf13/pflag
+  version: ^1.0.0
