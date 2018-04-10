@@ -9,7 +9,6 @@ add_test(
 
 add_custom_command(
 	OUTPUT ${PROJECT_NAME}
-	#COMMAND go build ${CMAKE_CURRENT_SOURCE_DIR}/cmd/${PROJECT_NAME})
 	COMMAND go build github.com/bobrofon/${PROJECT_NAME}/cmd/${PROJECT_NAME})
 
 add_custom_target("${PROJECT_NAME}-bin" ALL DEPENDS ${PROJECT_NAME})
