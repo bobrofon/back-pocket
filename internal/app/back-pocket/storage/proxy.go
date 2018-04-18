@@ -1,27 +1,30 @@
 package storage
 
 import (
-	"net/http"
-	"github.com/bobrofon/back-pocket/internal/app/back-pocket/config"
-	"github.com/pkg/errors"
-	"net/url"
 	"io/ioutil"
+	"net/http"
+	"net/url"
 	"sync"
+
+	"github.com/pkg/errors"
+
+	"github.com/bobrofon/back-pocket/internal/app/back-pocket/config"
 )
 
 type ProxyStorage struct {
-	client   *http.Client
-	cache    map[string]string
-	selfURL  *url.URL
-	rwMutex  *sync.RWMutex
+	client  *http.Client
+	cache   map[string]string
+	rwMutex *sync.RWMutex
+	selfURL *url.URL
 }
 
 func NewProxyStorage(conf *config.BackPocketConf) *ProxyStorage {
-	transport := &http.Transport{Proxy:http.ProxyURL(conf.HTTPProxy)}
-	client := &http.Client{Transport:transport}
-	selfURL := &url.URL{Scheme:"http", Host:conf.ListenAddr}
+	transport := &http.Transport{Proxy: http.ProxyURL(conf.HTTPProxy)}
+	client := &http.Client{Transport: transport}
+	selfURL := &url.URL{Scheme: "http", Host: conf.ListenAddr}
 	rwMutex := &sync.RWMutex{}
-	return &ProxyStorage{client:client, selfURL:selfURL, rwMutex:rwMutex}
+
+	return &ProxyStorage{client: client, selfURL: selfURL, rwMutex: rwMutex}
 }
 
 func (s *ProxyStorage) Put(key string, value string) error {
